@@ -30,7 +30,7 @@ document.querySelector("#numberWins").innerHTML=numberWins;
 
 
 
-function resetGame(){
+function startGame(){
     numberRemaining = maxTries;
     gameStarted = false;
     //clear arrays
@@ -72,7 +72,7 @@ function updatePage(){
 document.onkeydown = function(event) {
     //finsih game, one keystroke resets
     if(gameOver){
-        resetGame();
+        startGame();
         gameOver = false;
     }  else {
         //checks to make sure a-z was pressed
@@ -153,7 +153,8 @@ function ifWin() {
         //document.getElementById("youwin-image").style.cssText = "display: block";
         //document.getElementById("pressKeyTryAgain").style.cssText= "display: block";
         numberWins++;
-        hasFinished = true;
+        gameOver = true;
+       
     }
 };
 
@@ -165,5 +166,5 @@ function ifWin() {
 
 
 //function that runs when game starts
-resetGame();
+startGame();
 
