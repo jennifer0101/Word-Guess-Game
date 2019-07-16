@@ -10,7 +10,7 @@ var lettersGuessed = [];
 //current word in array
 var currentWord;
 
-//letters being guessed to build word in array
+//word being guessed to build word in array
 var wordGuess = [];
 
 //how many guesses left
@@ -22,20 +22,50 @@ var gameStart = false;
 //game ends, alert "press any key to try again"
 var gameOver = false;
 
-//letters of current word
-var lettersOfCurrentWord = [];
 
-//store matched letters if guessed correctly
-var matchedLetters = [];
+
+
 
 //how many wins player has total
 var numberWins = 0;
 document.querySelector("#numberWins").innerHTML=numberWins;
 
+
+
+
+
+//reset game 
 function resetGame() {
     numberRemaining = maxTries;
     gameStarted = false;
+    //clear arrays
+    lettersGuessed = [];
+    wordGuess = [];
+    //build wordGuess and clear it out
+    for (var i = 0; i < pixarWords[currentWord].length; i++){
+        wordGuess.push("_");
+    }
+    //show display
+    updatePage();
 }
+
+
+
+//updates main html page display
+function updatePage(){
+    document.getElementById("numberWins").innerText = numberWins;
+    document.getElementById("currentWord").innerText = "";
+    for (var i = 0; i < wordGuess.length; i++) {
+       document.getElementById("currentWord").innerText += wordGuess [i];
+    }
+    document.getElementById("numberRemaining").innerText = numberRemaining;
+    document.getElementById("lettersGuessed").innerText = lettersGuessed;
+        if(numberRemaining <= 0) {
+    gameOver = true;
+    }
+}
+
+
 
 function setUpGame(){
     //choose random word from array
@@ -46,14 +76,16 @@ function setUpGame(){
 }
 
 
+
+
 function buildWordView(){
     var wordView="";
     //loops through array of words, 
     for (let i = 0; i < lettersOfCurrentWord.length; i++) {
         console.log(lettersOfCurrentWord[i]);
     //if letters match, fills into word, if not, puts in dash    
-    if (matchedLetters.indexOf(lettersOfCurrentWord[i]) !== -1){
-        wordView += lettersOfCurrentWord[i];
+    if (lettersGuessed.indexOf(lettersOfCurrentWord[i]) !== -1){
+        wordView += wordGuess[i];
     } else {
         wordView += "&nbsp;_&nbsp;"
     }
@@ -61,10 +93,9 @@ function buildWordView(){
     document.querySelector("#currentWord").innerHTML=wordView;
 }
 
-document.onkeyup = function() {
-    wordguess = String.fromCharCode(event.keycode).toLowerCase();
-    
-}
+
+
+
 
 
 
