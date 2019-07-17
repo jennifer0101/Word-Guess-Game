@@ -1,6 +1,3 @@
-//maximum number of tries per word
-var maxTries = 15
-
 // create an array of words
 var pixarWords = ["merida", "nemo", "squirt", "buzz", "woody", "jessie", "rex", "eve", "walle", 
 "boo", "crush", "dory", "mike", "sulley", "mater", "gasprin", "flik", "joy", "anger", "sadness", 
@@ -16,7 +13,7 @@ var currentWord;
 var wordGuess = [];
 
 //how many guesses left
-var numberRemaining = 0;
+var numberRemaining = 15;
 
 //game starts flag
 var gameStart = false;
@@ -25,14 +22,15 @@ var gameStart = false;
 var gameOver = false;
 
 //how many wins player has total
-var numberWins = 0;
-document.querySelector("#numberWins").innerHTML=numberWins;
+var numberWins = null;
+
 
 
 
 function startGame(){
-    numberRemaining = maxTries;
-    gameStarted = false;
+    console.log("game is starting")
+  
+    gameStart = false;
     //clear arrays
     lettersGuessed = [];
     wordGuess = [];
@@ -40,9 +38,10 @@ function startGame(){
     //round random number down to nearest whole
     currentWord = Math.floor(Math.random() * (pixarWords.length));
     
+    
     //build wordGuess and clear it out
     for (var i = 0; i < pixarWords[currentWord].length; i++){
-        wordGuess.push("_");
+        wordGuess.push(" _ ");
     }
     updatePage();
 }
@@ -51,6 +50,7 @@ function startGame(){
 
 //updates main html page display
 function updatePage(){
+    console.log("updatePage is starting")
     document.getElementById("numberWins").innerText = numberWins;
     document.getElementById("currentWord").innerText = "";
     for (var i = 0; i < wordGuess.length; i++) {
@@ -72,6 +72,7 @@ function updatePage(){
 document.onkeydown = function(event) {
     //finsih game, one keystroke resets
     if(gameOver){
+        console.log(gameOver)
         startGame();
         gameOver = false;
     }  else {
@@ -123,6 +124,7 @@ function guessLetter(letter) {
 
 //finds letter in string and replaces with guessed letter
 function checkGuess(letter) {
+    console.log("checkGuess is starting")
     // stores positions of letters in string
     var positions = [];
 
@@ -139,7 +141,7 @@ function checkGuess(letter) {
        
     
     } else {
-        // Loop through all the indicies and replace the '_' with a letter.
+        // Loop through and replace the '_' with a letter.
         for(var i = 0; i < positions.length; i++) {
             wordGuess[positions[i]] = letter;
         }
@@ -149,21 +151,12 @@ function checkGuess(letter) {
 
 
 function ifWin() {
-    if(wordGuess.indexOf("_") === -1) {
-        //document.getElementById("youwin-image").style.cssText = "display: block";
-        //document.getElementById("pressKeyTryAgain").style.cssText= "display: block";
+    if(wordGuess.indexOf("_") === 1) {
         numberWins++;
         gameOver = true;
        
     }
 };
-
-
- //choose random word from array
- currentWord = pixarWords[Math.floor(Math.random() * pixarWords.length)];
- //splits up word into individual letters
- wordGuess = currentWord.split("");
-
 
 //function that runs when game starts
 startGame();
