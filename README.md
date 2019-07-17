@@ -1,4 +1,4 @@
-# Pixar Characters Word Guess Game# 
+# Pixar Characters Word Guess Game
 
 A word game where the user guesses popular character names from Pixar films. 
 
