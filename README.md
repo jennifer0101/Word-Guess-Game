@@ -11,5 +11,5 @@ User guesses letters, and if correct, they fill in the placeholders on the "curr
 * HTML5
 * CSS3
 * JavaScript
-* Bootstrap
+
 
