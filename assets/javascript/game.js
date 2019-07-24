@@ -44,10 +44,6 @@ function updatePage(){
     document.getElementById("numberRemaining").innerText = numberRemaining;
     document.getElementById("lettersGuessed").innerText = lettersGuessed;
     if(numberRemaining <=0) {
-        //
-        //document.getElementById
-        //document.getElementById
-        // add images
         numberRemaining = 15;
         gameOver = true; 
         startGame();
@@ -59,7 +55,6 @@ document.onkeydown = function(event) {
     //finsih game, one keystroke resets
     if(gameOver){
         console.log(gameOver)
-        //startGame();
         gameOver = false;
     }  else {
         //checks to make sure a-z was pressed
@@ -78,8 +73,7 @@ function buildWordView(){
     //if letters match, fills into word, if not, puts in dash    
     if (lettersGuessed.indexOf(wordGuess[i]) !== -1){
         wordView += wordGuess[i];
-    } //else {
-        //wordView += "&nbsp;_&nbsp;"
+    } 
     }
     }
 
@@ -133,9 +127,10 @@ function ifWin() {
         numberRemaining = 15;
         letsBuildIt();
     }
+
     updatePage();
- 
 };
+
 
 //function that runs when game starts
 startGame();
