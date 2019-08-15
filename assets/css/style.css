@@ -18,7 +18,7 @@ header {
 }
 
 #content {
-    align-content: center;
+    /* align-items: center; */
     width: 900px;
     margin: auto;
     overflow: auto; 
@@ -29,7 +29,7 @@ header {
     height: 500px;
     border: dotted;
     border-width: 3px;
-    border-color: blue
+    border-color: blue;
 }
 
 #rightside {
@@ -49,3 +49,6 @@ header {
     padding: 20px 30px 400px 40px;
 }
 
+#leftrightcontainer {
+    margin-left: 12%;
+}
